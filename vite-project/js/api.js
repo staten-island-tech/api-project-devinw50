@@ -14,3 +14,4 @@ async function getData(URL){
     }
 }
 getData(URL);
+console.log(URL)
