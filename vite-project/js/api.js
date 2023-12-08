@@ -7,9 +7,18 @@ async function getData(url) {
     } catch (error) {
         console.error("Error", error);
     }
+
 }
 
 getData(URL)
     .then(data => {
         console.log(data);
+        data.array.forEach((uuid)=> console.log(uuid))
     });
+ function cards (agents){
+    agents.forEach(agent =>{
+        console.log('Agent Name: ${agent.displayName}');
+        console.log('Role: ${agent.role.displayName}');
+        console.log('Agent Name: ${agent.description}');
+    })
+ }
