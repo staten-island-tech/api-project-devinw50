@@ -13,12 +13,12 @@ async function getData(url) {
 getData(URL)
     .then(data => {
         console.log(data);
-        data.array.forEach((uuid)=> console.log(uuid))
+        data.Array.forEach((uuid)=> console.log(uuid))
     });
- function cards (agents){
-    agents.forEach(agent =>{
+ /* function cards (agents){
+    agents.forEach(agents =>{
         console.log('Agent Name: ${agent.displayName}');
         console.log('Role: ${agent.role.displayName}');
         console.log('Agent Name: ${agent.description}');
     })
- }
+ } */

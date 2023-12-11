@@ -9,6 +9,6 @@ body {
 h1 {
     font-size: 5.5rem;
     text-align: center;
-    color:#928beb
+    color: var(--light-violet)
     ;
 }
