@@ -15,10 +15,14 @@ getData(URL)
         console.log(data);
         data.Array.forEach((uuid)=> console.log(uuid))
     });
- /* function cards (agents){
-    agents.forEach(agents =>{
-        console.log('Agent Name: ${agent.displayName}');
-        console.log('Role: ${agent.role.displayName}');
-        console.log('Agent Name: ${agent.description}');
+    
+ function cards (arr){
+    arr.forEach(agents =>{
+        DOMSelectors.column.insertAdjacentHTML (
+            console.log('Agent Name: ${agent.displayName}'),
+            console.log('Role: ${agent.role.displayName}'),
+            console.log('Agent Name: ${agent.description}')
+        )
+        
     })
- } */
+ }
