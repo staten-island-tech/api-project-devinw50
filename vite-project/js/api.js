@@ -12,7 +12,7 @@ async function getData(url) {
             throw new Error(`HTTP error! Status: ${response.status}`);
         }
         const data = await response.json();
-        console.log(data.data); // Check the structure of the returned data
+        console.log(data.data); 
 
         function insertCards(arr) {
             arr.forEach((agent) => {
@@ -28,15 +28,6 @@ async function getData(url) {
         }
 
         insertCards(data.data);
-
-        DOMSelectors.searchBtn.addEventListener('click', function () {
-            const agentName = prompt("Enter agent name:");
-            if (agentName) {
-                const filteredAgents = data.data.filter((agent) => agent.displayName.toLowerCase() === agentName.toLowerCase());
-                DOMSelectors.column.innerHTML = '';
-                insertCards(filteredAgents);
-            }
-        });
 
     } catch (error) {
         console.error('Error fetching data:', error.message);
