@@ -3,8 +3,9 @@
 html,
 body,
 * {
-  margin: 0.5%;
-  padding: 0;
+
+  margin: .8%;
+  padding: 0rem;
   box-sizing: border-box;
 }
 
@@ -56,6 +57,7 @@ body,
   flex-wrap:wrap;
   justify-content: space-around;
   margin: 5rem auto;
+  padding: 0%;
 }
 
 .card {
