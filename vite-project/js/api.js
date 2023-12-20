@@ -1,4 +1,5 @@
-const DOMSelectors = {
+document.addEventListener("DOMContentLoaded", () => { 
+    const DOMSelectors = {
     column: document.querySelector(".column"),
     searchBtn: document.querySelector('.search-btn'),
 };
@@ -15,13 +16,14 @@ async function getData(url) {
         console.log(data.data); 
 
         function insertCards(arr) {
-            arr.forEach((agent) => {
+            arr.forEach((hi) => { 
+                if (hi && hi.displayName && hi.displayIcon && hi.role && hi.role.displayName)
                 DOMSelectors.column.insertAdjacentHTML(
                     "beforeend",
                     `<div class="card">
-                        <h3 class="name">${agent.displayName}</h3>
-                        <img src="${agent.displayIcon}" class="img">
-                        <h4>Role: ${agent.role.displayName}</h4>
+                        <h3 class="name">${hi.displayName}</h3>
+                        <img src="${hi.displayIcon}" class="img">
+                        <h4>Role: ${hi.role.displayName}</h4>
                     </div>`
                 );
             });
@@ -36,3 +38,4 @@ async function getData(url) {
 }
 
 getData(apiUrl);
+});
