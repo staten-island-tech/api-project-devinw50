@@ -23,7 +23,7 @@ async function getData(url) {
                     `<div class="card">
                         <h3 class="name">${hi.displayName}</h3>
                         <img src="${hi.displayIcon}" class="img">
-                        <h4>Role: ${hi.role.displayName}</h4>
+                        <h4 class="role">Role: ${hi.role.displayName}</h4>
                     </div>`
                 );
             });
