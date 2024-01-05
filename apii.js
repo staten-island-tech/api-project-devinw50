@@ -1,6 +1,5 @@
 const DOMSelectors = {
     column: document.querySelector(".column"),
-    searchbtn: document.getElementById(".searchbtn")
 };
 
 const apiUrl = 'https://valorant-api.com/v1/agents';
@@ -36,13 +35,4 @@ async function getData(url) {
 
 }
 
-function searchAgent(){
-    try {
-        const searchWord = searchInput.value.toLowerCase();
-const correctWord = data.data.filter (agent => agent.displayName.includes(searchWord))
-insertCards(correctWord);
-    } catch (error) {
-    console.error ('Error fecthing data', error.message)
-}
-}
 getData(apiUrl);
