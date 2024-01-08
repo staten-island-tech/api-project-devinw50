@@ -1,3 +1,5 @@
+import "../styles/style.css" assert { type: "css" };
+
 document.addEventListener("DOMContentLoaded", () => {
     const DOMSelectors = {
         column: document.querySelector(".column"),
