@@ -1,9 +1,13 @@
 document.addEventListener("DOMContentLoaded", () => {
     const DOMSelectors = {
         column: document.querySelector(".column"),
-        dropdownButton: document.querySelector('.dropdown-button'),
-        dropdownContent: document.querySelector('.dropdown-content'),
-        showAllButton: document.querySelector('.show-all-button'), 
+        showAllButton: document.querySelector('.show-all-button'),
+        searchButton: document.querySelector('.search-button'),
+        searchInput: document.getElementById('searchInput'),
+        Duelist: document.getElementById("Duelist"),
+        Initiator: document.getElementById("Initiator"),
+        Controller: document.getElementById("Controller"),
+        Sentinel: document.getElementById("Sentinel"),
     };
 
     const apiUrl = 'https://valorant-api.com/v1/agents';
@@ -17,57 +21,137 @@ document.addEventListener("DOMContentLoaded", () => {
             const data = await response.json();
             console.log(data.data);
 
-            function insertCards(arr) {
-                DOMSelectors.column.innerHTML = ''; 
-                arr.forEach((hi) => {
-                    if (hi && hi.displayName && hi.displayIcon && hi.role && hi.role.displayName) {
-                        DOMSelectors.column.insertAdjacentHTML(
-                            "beforeend",
-                            `<div class="card">
-                                <h3 class="name">${hi.displayName}</h3>
-                                <img src="${hi.displayIcon}" class="img" alt="images">
-                                <h4 class="role">Role: ${hi.role.displayName}</h4>
-                            </div>`
-                        );
-                    }
-                });
-            }
-
             insertCards(data.data);
-
-            DOMSelectors.dropdownButton.addEventListener('click', () => {
-                const dropdownContent = DOMSelectors.dropdownContent;
-                dropdownContent.style.display = dropdownContent.style.display === 'block' ? 'none' : 'block';
-            });
 
             DOMSelectors.showAllButton.addEventListener('click', () => {
                 insertCards(data.data);
             });
 
-            DOMSelectors.dropdownContent.addEventListener('click', (event) => {
-                event.preventDefault();
-                const selectedAgent = event.target.dataset.agent;
-                if (selectedAgent) {
-                    const filteredAgents = data.data.filter(agent => agent.displayName === selectedAgent);
-                    insertCards(filteredAgents);
-                    DOMSelectors.dropdownContent.style.display = 'none';
-                }
+            DOMSelectors.searchButton.addEventListener('click', () => {
+                search(DOMSelectors.searchInput.value.toLowerCase(), data.data);
             });
+
+            RoleButtons(apiUrl);
 
         } catch (error) {
             console.error('Error fetching data:', error.message);
             document.querySelector("h1").textContent = "error";
         }
     }
-    
-    function toggleDropdownContent() {
-        const dropdownContent = DOMSelectors.dropdownContent;
-        dropdownContent.style.display = dropdownContent.style.display === 'block' ? 'none' : 'block';
+
+    function insertCards(arr) {
+        try {
+            DOMSelectors.column.innerHTML = '';
+            arr.forEach((agent) => {
+                if (agent && agent.displayName && agent.displayIcon && agent.role && agent.role.displayName) {
+                    DOMSelectors.column.insertAdjacentHTML(
+                        "beforeend",
+                        `<div class="card">
+                            <h3 class="name">${agent.displayName}</h3>
+                            <img src="${agent.displayIcon}" class="img" alt="images">
+                            <h4 class="role">Role: ${agent.role.displayName}</h4>
+                        </div>`
+                    );
+                }
+            });
+        } catch (error) {
+            console.error('Error inserting cards:', error.message);
+        }
     }
 
-    function showAllCards(agents) {
-        insertCards(agents);
-        toggleDropdownContent();
+    function search(theword, agents) {
+        try {
+            const matchingAgents = agents.filter(agent => agent.displayName.toLowerCase().includes(theword));
+            insertCards(matchingAgents);
+        } catch (error) {
+            console.error('Error searching agents:', error.message);
+        }
+    }
+
+    async function RoleButtons(apiUrl) {
+        DOMSelectors.Initiator.addEventListener("click", async () => {
+            try {
+                const response = await fetch(apiUrl);
+                const data = await response.json();
+
+                const Initiators = data.data.filter(
+                    (agent) => agent.role && agent.role.displayName === "Initiator"
+                );
+
+                console.log(Initiators);
+
+                if (Initiators.length > 0) {
+                    insertCards(Initiators);
+                } else {
+                    console.log("No Initiators found.");
+                }
+            } catch (error) {
+                console.error("Error filtering data:", error);
+            }
+        });
+
+        DOMSelectors.Duelist.addEventListener("click", async () => {
+            try {
+                const response = await fetch(apiUrl);
+                const data = await response.json();
+
+                const duelists = data.data.filter(
+                    (agent) => agent.role && agent.role.displayName === "Duelist"
+                );
+
+                console.log(duelists);
+
+                if (duelists.length > 0) {
+                    insertCards(duelists);
+                } else {
+                    console.log("No Duelists found.");
+                }
+            } catch (error) {
+                console.error("Error filtering data:", error);
+            }
+        });
+
+        DOMSelectors.Controller.addEventListener("click", async () => {
+            try {
+                const response = await fetch(apiUrl);
+                const data = await response.json();
+
+                const controllers = data.data.filter(
+                    (agent) => agent.role && agent.role.displayName === "Controller"
+                );
+
+                console.log(controllers);
+
+                if (controllers.length > 0) {
+                    insertCards(controllers);
+                } else {
+                    console.log("No Controllers found.");
+                }
+            } catch (error) {
+                console.error("Error filtering data:", error);
+            }
+        });
+
+        DOMSelectors.Sentinel.addEventListener("click", async () => {
+            try {
+                const response = await fetch(apiUrl);
+                const data = await response.json();
+
+                const sentinels = data.data.filter(
+                    (agent) => agent.role && agent.role.displayName === "Sentinel"
+                );
+
+                console.log(sentinels);
+
+                if (sentinels.length > 0) {
+                    insertCards(sentinels);
+                } else {
+                    console.log("No Sentinels found.");
+                }
+            } catch (error) {
+                console.error("Error filtering data:", error);
+            }
+        });
     }
 
     getData(apiUrl);
