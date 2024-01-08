@@ -40,6 +40,7 @@ document.addEventListener("DOMContentLoaded", () => {
             document.querySelector("h1").textContent = "error";
         }
     }
+    getData(apiUrl);
 
     function insertCards(arr) {
         try {
@@ -49,9 +50,9 @@ document.addEventListener("DOMContentLoaded", () => {
                     DOMSelectors.column.insertAdjacentHTML(
                         "beforeend",
                         `<div class="card">
-                            <h3 class="name">${agent.displayName}</h3>
-                            <img src="${agent.displayIcon}" class="img" alt="images">
-                            <h4 class="role">Role: ${agent.role.displayName}</h4>
+                            <h2 class="name">${agent.displayName}</h2>
+                            <img src="${agent.displayIcon}" class="img" alt="${agent.displayName}">
+                            <h3 class="role">Role: ${agent.role.displayName}</h3>
                         </div>`
                     );
                 }
@@ -155,6 +156,5 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         });
     }
-
-    getData(apiUrl);
+    RoleButtons(apiUrl);
 });
