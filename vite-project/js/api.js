@@ -28,13 +28,13 @@ document.addEventListener("DOMContentLoaded", () => {
             });
 
             DOMSelectors.searchButton.addEventListener('click', () => {
-                search(DOMSelectors.searchInput.value.toLowerCase(), data.data);
+                searchAgents(DOMSelectors.searchInput.value.toLowerCase(), data.data);
             });
 
             RoleButtons(apiUrl);
 
         } catch (error) {
-            console.error('Error fetching data:', error.message);
+            console.error('ERROR:', error.message);
             document.querySelector("h1").textContent = "error";
         }
     }
@@ -55,16 +55,16 @@ document.addEventListener("DOMContentLoaded", () => {
                 }
             });
         } catch (error) {
-            console.error('Error inserting cards:', error.message);
+            console.error('ERROR:', error.message);
         }
     }
 
-    function search(theword, agents) {
+    function searchAgents(searchTerm, agents) {
         try {
-            const matchingAgents = agents.filter(agent => agent.displayName.toLowerCase().includes(theword));
+            const matchingAgents = agents.filter(agent => agent.displayName.toLowerCase().includes(searchTerm));
             insertCards(matchingAgents);
         } catch (error) {
-            console.error('Error searching agents:', error.message);
+            console.error('ERROR:', error.message);
         }
     }
 
@@ -86,7 +86,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     console.log("No Initiators found.");
                 }
             } catch (error) {
-                console.error("Error filtering data:", error);
+                console.error("ERROR:", error);
             }
         });
 
@@ -107,7 +107,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     console.log("No Duelists found.");
                 }
             } catch (error) {
-                console.error("Error filtering data:", error);
+                console.error("ERROR:", error);
             }
         });
 
@@ -128,7 +128,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     console.log("No Controllers found.");
                 }
             } catch (error) {
-                console.error("Error filtering data:", error);
+                console.error("ERROR:", error);
             }
         });
 
@@ -149,7 +149,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     console.log("No Sentinels found.");
                 }
             } catch (error) {
-                console.error("Error filtering data:", error);
+                console.error("ERROR:", error);
             }
         });
     }
