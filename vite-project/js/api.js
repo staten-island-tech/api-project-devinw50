@@ -1,6 +1,5 @@
 import "../styles/style.css" assert { type: "css" };
 
-document.addEventListener("DOMContentLoaded", () => {
     const DOMSelectors = {
         column: document.querySelector(".column"),
         showAllButton: document.querySelector('.show-all-button'),
@@ -157,4 +156,4 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
     RoleButtons(apiUrl);
-});
+
