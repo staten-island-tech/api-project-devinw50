@@ -67,13 +67,19 @@ function insertCards(arr) {
 }
 
 function searchAgents(searchTerm, agents) {
-  try {
-    const matchingAgents = agents.filter(agent => agent.displayName.toLowerCase().includes(searchTerm));
-    insertCards(matchingAgents);
-  } catch (error) {
-    console.error('ERROR:', error.message);
+    try {
+      const matchingAgents = agents.filter(agent => agent.displayName.toLowerCase().includes(searchTerm));
+  
+      if (matchingAgents.length > 0) {
+        insertCards(matchingAgents);
+      } else {
+        throw new Error("No matching agents found. Maybe you typed it wrong? PLease try again.");
+      }
+    } catch (error) {
+      console.error('ERROR:', error.message);
+      document.querySelector(".column").innerHTML = `<p style="color: white;">${error.message}</p>`;
+    }
   }
-}
 
 async function RoleButtons(apiUrl) {
   DOMSelectors.Initiator.addEventListener("click", async () => {
