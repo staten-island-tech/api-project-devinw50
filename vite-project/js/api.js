@@ -55,7 +55,7 @@ function insertCards(arr) {
                     <h3 class="role">Role: ${agent.role.displayName}</h3>
                 </div>
                 <div class="back">
-                    <p class="description">${agent.description || 'No description available.'}</p>
+                    <p class="description">${agent.description}</p>
                 </div>
             </div>`
         );

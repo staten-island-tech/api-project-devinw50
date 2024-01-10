@@ -103,7 +103,7 @@ h1 {
 
 .back .description {
   padding: 0 1rem;
-  font-size: 1rem; /* Adjust the font size as needed */
+  font-size: 1rem; 
 }
 
 .visually-hidden {
@@ -114,4 +114,18 @@ h1 {
   overflow: hidden;
   border: 0;
   color: white;
+}
+
+@media screen and (max-width: 1000px) {
+  .card {
+      width: 40%;
+  }
+  
+}
+
+@media screen and (max-width: 813px) {
+  .card {
+      width: 90%;
+  }
+  
 }
