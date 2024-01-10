@@ -28,8 +28,8 @@ h1 {
 }
 
 .card {
-  flex-basis: calc(19% - 4.5%);
   height: 48vh;
+  width: 18vw;
   margin: 3%; 
   display: flex;
   background-color: #ffffff;
